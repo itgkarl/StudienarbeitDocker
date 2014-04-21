@@ -6,3 +6,16 @@ Allgemeines zu Docker:
     \item Geschichte/Entstehung
     \item Hinführung zum Thema
 \end{itemize}
+
+Cloud Computing gehört derzeit immernoch zu einem der wichtigsten Schlagwörtern für Betreiber von IT Infrastrukturen.
+\glqq Eine breit akzeptierte Definition des Begriffs Cloud Computing gibt es bis heute nicht. Allerdings können die grundlegenden Eigenschaften wie folgt zusammengefasst werden: Cloud Computing nutzt Virtualisierung und das Internet zur dynamischen Bereitstellung von IT-Ressourcen. Dabei kann es sich um IT-Infrastrukturen. Plattformen oder Anwendungen aller Art handeln. Cloudcomputing bezeichnet also sowohl Anwendungen, welche als Dienste über das Internet angeboten werden, als auch auf die Hard- und Software.\grqq \cite[S. 28]{meinel_virtualisierung_2011}
+
+Virtualisierung und Cloud Computing sind also zweit sehr stark miteinander vernetzte Begriffe.
+Dabei ist Virtualisierung kein neues Konzept. Bereits in den frühen 60er Jahren entwickelte IBM mit dem Großrechnersystem 360 eine Plattform die aus heutiger Sicht als Vorläufer aller virtuellen Systeme gilt. \cite{frank_balmes_grin_????}
+
+Heute ermöglicht uns Virtualisierung auf \glqq allen Ebenen von der Entwicklung bis zum Betrieb von Ressourcen, die Vereinheitlichung von Umgebungen und erhöhte Sicherheit durch Isolation. Dies spart Zeit bei der Entwicklung, reduziert Kosten beim Betrieb von Servern und verringert das Fehlerpotential.\grqq \cite[S. 1]{schroder_container-virtualisierung_2014}
+Neben der Vollwertigen \grq Virtualisierung in Software\grq\ und der \grq Hardware-Virtualisierung\grq\ hat sich noch das Konzept der \grq Virtualisierung mittels Container\grq\ herausgebildet.
+\glqq Hier wird eine komplette Betriebssystemumgebung innerhalb eines abgeschlossenen Containers zur Verfügung gestellt. Charakteristisch für diese Virtualisierungsform ist, dass nur ein Kernel des Betriebssystems läuft, der die jeweiligen Container verwaltet und eine saubere Trennung sicherstellt.\grqq \cite{plotner_linux_2012}
+Seit der Kernelversion 2.6.29 \cite{fischer_linux_2014} bietet Linux eine Umsetzung dieser Virtualisierungsform bereits als festen Bestandteil des Betriebssystems.
+Das Problem mit diesen als \grq LXC\grq\ bekannten Containern ist jedoch ihre sehr unhandliches Interface.
+Das Open Source Projekt \grq Docker\grq\ der Firma \grq dotCloud\grq\ hat sich diesem Problem angenommen und eine benutzerfreundliche Abstraktionsschicht für die Verwendung von LXC Containern entwickelt. Das Projekt steckt zwar immer noch in den Kinderschuhen, erfreut sich aber schnell wachsender Beliebtheit.
