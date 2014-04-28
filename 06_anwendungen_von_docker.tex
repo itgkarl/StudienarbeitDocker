@@ -1,0 +1,32 @@
+\chapter{Anwendungen von Docker}
+\label{cha:anwendungen_von_docker}
+Docker ist eine Software die es ermöglicht Anwendungen zusammen mit ihren Abhängigkeiten in einen isolierten Container zu verpacken. Docker bedient sich dabei der Linux eigenen LXC-Conntainer Technologie und erweitert diese um eine simple Benutzer API (Application Pro-
+gramming Interface) zum erzeugen, verwalten und für die Interaktion mit diesen Containern.
+Die Eigenschaften von Docker können dabei wie folgt zusammengefasst werden \cite{abel_docker:_2013}:
+\begin{itemize}
+ 
+      \item \textbf{Dateisystem Isolation} \\
+Jeder Prozess läuft in einem seperaten root-Dateisystem
+      \item \textbf{Resourcen Isolation} \\
+Systemressourcen wie CPU und Speicher können für jeden Container einzeln geregelt werden.
+      \item \textbf{Netzwerk Isolation} \\
+Jeder Prozess-Container läuft in seinem eigenen Netzwek-Namensraum mit einer seperaten, 			virtuellen Netzwekschnittstelle und IP-Adresse.
+      \item \textbf{Copy-On-Write} \\
+Änderungen am Dateisystem eines Containers weden in eine neue Schicht gespeichert und nicht in das originale Abbild übernommen. Dies erlaubt ein schnelles Anlegen neuer Container und spart sowohl Arbeits- als auch Festplattenspeicher.
+      \item \textbf{Protokollierung} \\
+Die Standard-Datenströme (stdout/stderr/stdin) jedes Containers werden protokolliert, um in Echtzeit oder als Stapel bearbeitet zu werden.
+	  \item \textbf{Änderungsverwaltung} \\
+Änderungen an Dateien in einem Container können zu einem neuen Abbild zusammengesetzt werden. Dieses kann als Grundlage für neue Container dienen.
+	  \item \textbf{Interaktive Shell} \\
+Docker kann ein Pseudo-Terminal anlegen und mit den Standard-Datenströmen verbinden, um eine interaktive Verbindung mit einem Container zu ermöglichen.
+\end{itemize}
+Docker wird seit März 2013 von der Firma dotCloud seit Oktober 2013 Docker
+Inc.) unter der Apache Lizenz 2.0 veröffentlicht.\cite{github_dotcloud/docker_2013}
+Im folgenden sollen mögliche Anwendungsfälle von Docker näher beleuchtet werden.
+\section{Paas}
+\label{sec:paas}
+Die Firma dotCloud ist ein ein Platform as a Service-Provider. Als Erfinder und treibende Kraft hinter dem Docker-Projekt ist es also nicht verwunderlich, dass das Hauptanwendungsfeld von Docker im Bereich von Platform as a Service liegt.
+Docker ist eigentlich eine Neuentwicklung eines Teils des Systems, welches sich dotCloud über die Jahre als 
+Platform as a Service-Provider angeeignet hat. DotCloud verfolgt mit Docker das Konzept, einen Grundstein vorzugeben, um den ein Platform as a Service-Infrastruktur aufgebaut werden kann.\cite[Zeit 18:24]{hykes_introduction_2013}
+
+Um zu verstehen welche Vorteile Docker als Basis einer Platform as a Service-Infrastruktur bieten kann, muss man zunächst die Probleme betrachten, welchen sich ein Platform as a Service-Provider in der heutigen Zeit ausgesetzt sieht.
