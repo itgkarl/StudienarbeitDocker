@@ -139,12 +139,38 @@ Mit Hilfe von Docker kann man also auf recht simple Art und Weise eine Vielzahl 
 \section{Automatisierung von Tests mit Docker}
 \label{sec:automatisierung_von_tests_mit_docker}
 
-Die bisher beschriebenen Anwendungsgebiete befinden sich alle im Bereichen die in Architekturvarianten der Cloud angesiedelt sind. Also einem Gebiet, für das Docker gedacht ist und entwickelt wurde. Neben diesen Anwendungsgebieten, für die Docker eigentlich konzipiert ist, bieten sich aber noch zahlreiche weitere Bereiche in denen Docker sinnvoll eingesetzt werden kann und uns damit einen Mehrwert in der täglichen Arbeit bringen kann.
+Die bisher beschriebenen Anwendungsgebiete befinden sich alle im Bereichen die in Architekturvarianten der Cloud angesiedelt sind. Also einem Gebiet, für das Docker gedacht ist und entwickelt wurde. Neben diesen Anwendungsgebieten bieten sich aber noch zahlreiche weitere Bereiche in denen Docker sinnvoll eingesetzt werden kann und uns damit einen Mehrwert in der täglichen Arbeit bringen kann.
 Einer davon ist die Verwendung von Docker für die Automatisierung von Tests in der Softwareentwicklung.
 
 Ein heute weitverbreitetes vorgehen zur Optimierung der Softwareentwicklung ist \grq Continuous Integration\grq . Unter \grq Continuous Integration\grq versteht man ein vorgehen in der Softwareentwicklung bei dem alle Mitglieder eines Teams ihre Änderungen am Code besonders häufig integrieren, also zusammenführen. Üblich sind hier durchaus mehrere Integrationen pro Tag. 
 \glqq Im Team entwickelte Softwareprojekte sind mit wachsender Größe und Komplexität zunehmend schwieriger zu verwalten und zu bauen. Durch das ständige Zusammenspiel vieler Entwickler schleichen sich früher oder später zwangsläufig sogenannte Integrationsfehler ein, die sich, je nachdem wann sie bemerkt werden, nur schwer oder gar nicht mehr beseitigen lassen.\grqq \cite{feustel_continuous_????}
 Dieser Entwicklung soll das Vorgehen von \grq Continuous Integration\grq\ entgegenwirken.
-Jede Integration wird dabei von einem automatisiertem \grq build\grq\ der Anwendung begleitet um mögliche Integrationsfehler schnellstmöglich zu entdecken. Jeder \grq build\grq\ wird dabei von einer Reihe von automatisierten Softwaretests begleitet.
+Jede Integration wird von einem automatisiertem \grq build\grq\ der Anwendung begleitet. Bei jedem \grq build\grq\ werden eine Reihe von automatisierten Tests durchgeführt. So können Integrationsfehler frühzeitig erkannt und behoben werden.
 
+Hat das zu testende System viele Abhängigkeiten zu Fremdsystemen können diese Tests mitunter schnell recht komplex werden. Oftmals bekommt man diese Problematik noch über die Verwendung von Mockups in den Griff. Handelt es sich bei den auszuführenden Tests jedoch um Akzeptanztests die eine Bedienung der Anwendung über das Benutzerinterface simulieren sind schnell die Grenzen von klassischen Mockups erreicht.
+In diesem Fall müssen wohl oder übel alle Abhängigkeiten der Anwendung auch tatsächlich vorhanden sein. Bei Anwendungen mit vielen Abhängigkeiten wird das schnell zum Problem.
+Arbeitet man mit mehreren Systemumgebungen müssen alle Abhängigkeiten mehrfach bereitgestellt werden was einen hohen Kostenaufwand bedeuten kann.
+Benötigt eine Anwendung zum Beispiel im Hintergrund einen LDAP-Server für die Authentifizierung und das Projekt arbeitet mit einem Entwicklungs-, Test- und Produktions-System muss der selbe Server drei mal bereitgestellt werden.
+Möchte man diese Akzeptanztests, wie es heute üblich ist, auch noch von jedem Entwicklungsrechner aus ausführen können, würde man streng genommen zusätzlich für jeden Entwickler eine eigenen Peripherie benötigen.
+Von der Vielzahl der Instanzen der Abhängigkeiten einmal abgesehen, bekommt man mit diesem Vorgehen noch einen weiteren unschönen Effekt.
+Man muss sich nicht mehr nur Gedanken über sein eigenes System machen, sondern ist immer angewiesen auf die Richtigkeit aller Abhängigkeiten.
+Fällt zum Beispiel nur eine der Abhängigkeiten aus, ist sofort der gesamte Workflow der \grq Continuous Integration\grq\ gestört.
+Änderungen die Abhängigkeiten des Systems betreffen müssen darüber hinaus an einer Vielzahl von stellen vorgenommen werden was die Wartbarkeit zusätzlich erschwert.
+Die Lösung für diese Probleme liegt in der Virtualisierung.
+Um die starke Koppelung mit den Fremdsystemen bei der Ausführung von Tests aufzulösen und die Tests somit konstant und reproduzierbar zu machen, ist man dazu übergegangen die Abhängigkeiten in Form von virtuellen Maschinen bereitzustellen.
+Benötigt ein Test also zum Beispiel die Präsenz eines LADP Servers startet er sich diesen einfach für die benötigte Zeit als virtuelle Instanz mit den gewünschten Eigenschaften.
+Werkzeuge wie Chef, Puppet und Vagrant machen es besonders einfach die Eigenschaften einer virtuellen Maschine im Vorhinein festzulegen und sie anschließend mit nur einem Befehl zu starten.
+Auf leistungsstarken Systemen kommt man mit diesem vorgehen sehr gut zurande. Möchte man allerdings dem Wunsch der Entwickler nachkommen automatisierte System- und Akzeptanztests in einer produktionsnahen Umgebung vollständig lokal auf dem Entwicklungsrechner durchzuführen läuft man hier schnell in Performanceprobleme.
+\glqq Wenn die Infrastruktur jedoch tatsächlich ausreichend produktionsähnlich, also komplex wird, mit verschiedenen interagierenden Anwendungsservern und Datenbanken auf verschiedenen Virtuellen Maschinen, dann reichen die Ressourcen eines Entwicklungsrechners zum Ausführen einer solchen Umgebung oft nicht aus. Das liegt mitunter daran, dass jede Virtuelle Maschine ein eigenes vollständiges Betriebssystem inklusive Kernel, Bibliotheken, Netzwerk-Stack usw. in den Arbeitsspeicher steckt.\grqq \cite{holbreich_von_2014}
+
+Genau hier ist der Punkt an dem Docker eine ernstzunehmende Alternative für die bisherigen Tools darstellen kann. Ersetzt man die \grq schweren\grq\ virtuellen Maschinen durch leichtgewichtige Container ist es möglich sehr viel komplexere Infrastrukturen auch mit minimalen Systemressourcen zu betreiben.
+
+TODO: Kurz performance
+
+
+
+Den Nachteil den Docker allerdings gegenüber echten virtuellen Maschinen hat ist, dass eine Verwendung nur dann Sinn macht, wenn man seine einzelnen Infrastrukturkomponenten auf Linux aufsetzen kann. Da Docker auf den Linux eigenen LXC-Containern aufsetzt können damit auch nur Linux Infrastrukturen emuliert werden.
 Was wurde bisher dafür verwendet. (hafenarbeiter) Was sind die Nachteile. 
+
+TODO: Referenzen für Fachbegriffe IaC, paas, saas, iaas
+Absätze setzen
