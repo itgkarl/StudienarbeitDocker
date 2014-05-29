@@ -113,9 +113,17 @@ Mit Hilfe von Docker ist es somit möglich die zuvor beschiedene \glqq Matrix Fr
 Mit Hilfe von Docker ist es damit möglich einen großen Interessenskonflikt zwischen Platform as a Service-Provider und Platform as a Service-Nutzer zu beseitigen.
 Der Nutzer möchte in der Regel eine möglichst große Freiheit. Er möchte selbst bestimmen wie die Abhängigkeiten seiner Software sind, welche Frameworks er verwendet oder in welcher Programmiersprache er seine Software implementiert. Er möchte sich nicht vorschreiben lassen unter welchen Rahmenbedingungen der seine Software umsetzt. Der Platform as a Service-Provider hingegen möchte möglichst kosteneffizient arbeiten und einen möglichst geringen Verwaltungsaufwand betreiben. Das bedeutet für ihn möglichst genaue Parameter festzulegen. Für ihn gibt es optimaler weise eine Programmiersprache, ein Framework, so dass am ende alle auf der Plattform erzeugten Anwendungen gleich zu handhaben sind. Dieser Interessenskonflikt muss zwangsläufig in irgend einer Art von Kompromiss aufgelöst werden.
 Eine für beide optimale Lösung wäre nach Solomon Hykes \cite[Zeit 13:50]{hykes_introduction_2013} die Verwendung von virtuellen Maschinen. Der Nutzer hätte die maximalst mögliche Freiheit beim Packen seiner Anwendung. Der Provider müsste sich nur auf das betreiben von virtuellen Maschinen spezialisieren. Dieses Konzept ist jedoch nicht praktikabel. Der Overhead an Daten wäre hierbei einfach viel zu groß. Im Grunde würde man für jede Anwendung immer einen komplette Rechner ausliefern. Darüber hinaus müsste man einige Einbußen im Bereich der Performance hinnehmen.
-\glqq Virtualisierung fügt eine weitere Abstraktionsschicht zu einem System hinzu, was unweigerlich einen Geschwindigkeitsverlust gegenüber des direkten Betriebs einer Anwendung bedeutet. Zu unterscheiden sind Zwei Arten: die Verzögerung beim Starten der Anwendung und das langsamere Ausführen verschiedener Operationen während des Betriebs.\grqq \cite[Seite 4]{schroder_container-virtualisierung_2014}
+\glqq Virtualisierung fügt eine weitere Abstraktionsschicht zu einem System hinzu (siehe Abb \ref{fig:abstraction_container_hyper}), was unweigerlich einen Geschwindigkeitsverlust gegenüber des direkten Betriebs einer Anwendung bedeutet. Zu unterscheiden sind Zwei Arten: die Verzögerung beim Starten der Anwendung und das langsamere Ausführen verschiedener Operationen während des Betriebs.\grqq \cite[Seite 4]{schroder_container-virtualisierung_2014}
 Für einen Platform as a Service-Anbieter kann hier vor allem die langsamere Ausführung von Operationen durchaus zum Problem werden.
-Mit Hilfe von Docker ist es möglich diese Lücke zu schließen. Durch die dünne Abstraktions-Schichten ist die Geschwindigkeit der virtualisierten Programme in einem Container fast identisch mit der von direkt auf dem System laufenden Programmen.\cite{schroder_container-virtualisierung_2014} Darüber hinaus ist der Entwickler innerhalb des Containers frei. Er kann hier also alle Parameter selbst so festlegen, dass sichergestellt ist, dass sich die Anwendung die er lokal getestet hat auch auf der Infrastruktur des Platform as a Service-Providers noch genauso verhalten wird. Auch der Overhead an Daten beim ausliefern einer in einen Container gepackten Anwendung ist so gering, dass er kein Argument mehr darstellt diese nicht zu verwenden.
+Mit Hilfe von Docker ist es möglich diese Lücke zu schließen. Durch eine dünnere Abstraktions-Schichten ist die Geschwindigkeit der virtualisierten Programme in einem Container fast identisch mit der von direkt auf dem System laufenden Programmen (siehe Abb \ref{fig:abstraction_container_hyper}).\cite{schroder_container-virtualisierung_2014}
+\begin{figure}[htbp]
+  \centering  
+  \includegraphics[scale=0.5]{img/abstractionContainerHyper.JPG}\\
+  \footnotesize\sffamily\textbf{Quelle:} \cite{miguel_g._xavier_performance_????}
+  \caption{Vergleich von Container- und Hypervisorbasierter Virtualisierung }
+  \label{fig:abstraction_container_hyper}
+\end{figure}
+ Darüber hinaus ist der Entwickler innerhalb des Containers frei. Er kann hier also alle Parameter selbst so festlegen, dass sichergestellt ist, dass sich die Anwendung die er lokal getestet hat auch auf der Infrastruktur des Platform as a Service-Providers noch genauso verhalten wird. Auch der Overhead an Daten beim ausliefern einer in einen Container gepackten Anwendung ist so gering, dass er kein Argument mehr darstellt diese nicht zu verwenden.
 Docker bildet somit die Optimale Basis um darum einen effizienten Platform as a Service aufzubauen. 
 
 \section{Saas}
@@ -163,14 +171,21 @@ Werkzeuge wie Chef, Puppet und Vagrant machen es besonders einfach die Eigenscha
 Auf leistungsstarken Systemen kommt man mit diesem vorgehen sehr gut zurande. Möchte man allerdings dem Wunsch der Entwickler nachkommen automatisierte System- und Akzeptanztests in einer produktionsnahen Umgebung vollständig lokal auf dem Entwicklungsrechner durchzuführen läuft man hier schnell in Performanceprobleme.
 \glqq Wenn die Infrastruktur jedoch tatsächlich ausreichend produktionsähnlich, also komplex wird, mit verschiedenen interagierenden Anwendungsservern und Datenbanken auf verschiedenen Virtuellen Maschinen, dann reichen die Ressourcen eines Entwicklungsrechners zum Ausführen einer solchen Umgebung oft nicht aus. Das liegt mitunter daran, dass jede Virtuelle Maschine ein eigenes vollständiges Betriebssystem inklusive Kernel, Bibliotheken, Netzwerk-Stack usw. in den Arbeitsspeicher steckt.\grqq \cite{holbreich_von_2014}
 
-Genau hier ist der Punkt an dem Docker eine ernstzunehmende Alternative für die bisherigen Tools darstellen kann. Ersetzt man die \grq schweren\grq\ virtuellen Maschinen durch leichtgewichtige Container ist es möglich sehr viel komplexere Infrastrukturen auch mit minimalen Systemressourcen zu betreiben.
-
-TODO: Kurz performance
-
-
+Genau hier ist die Stelle an der Docker eine ernstzunehmende Alternative für die bisherigen Tools darstellen kann. Ersetzt man die \grq schweren\grq\ virtuellen Maschinen durch leichtgewichtige Container ist es möglich sehr viel komplexere Infrastrukturen auch mit minimalen Systemressourcen zu betreiben.
+Aufgrund einer geringeren Abstraktionsschicht (siehe Abb \ref{fig:abstraction_container_hyper}) bieten die leichtgewichtigen Container einen signifikanten Performancegewinn gegenüber der klassischen Virtualisierung welcher es zusammen mit einem geringeren Arbeitsspeicherauslastung ermöglicht zahlreiche Container auch auf schwächeren Entwicklungsrechnern zu betreiben.
+Xavier et al. \cite{miguel_g._xavier_performance_????} haben dazu einen Performancevergleich zwischen klassischer hypervisorbasierter Virtualisierung und Containerbasierter Virtualisierung angestellt.
+In diesem Vergleich wurden gängige Container  wie Linux VServer, OpenVZ and Linux Containers (LXC) einem Vertreter der hypervisorbasierten Virtualisierung: Xen gegenübergestellt.
+Docker benutzt intern LXC und ist daher als vertreter der Linux Containers zu sehen.
+\begin{figure}[htbp]
+  \centering  
+  \includegraphics[scale=0.5]{img/performanceBenchmarks.JPG}\\
+  \footnotesize\sffamily\textbf{Quelle:} \cite{miguel_g._xavier_performance_????}
+  \caption{Performancevergleich von Container- und Hypervisorbasierter Virtualisierung}
+  \label{fig:performance_container_hyper}
+\end{figure}
+In allen gemessenen Feldern bewegte sich die Performance von Containen immer im Bereich der nativen Ausführung und zeigte einen deutlichen Performancevorteil gegenüber der hypervisorbasierten Virtualisierung. 
 
 Den Nachteil den Docker allerdings gegenüber echten virtuellen Maschinen hat ist, dass eine Verwendung nur dann Sinn macht, wenn man seine einzelnen Infrastrukturkomponenten auf Linux aufsetzen kann. Da Docker auf den Linux eigenen LXC-Containern aufsetzt können damit auch nur Linux Infrastrukturen emuliert werden.
-Was wurde bisher dafür verwendet. (hafenarbeiter) Was sind die Nachteile. 
 
 TODO: Referenzen für Fachbegriffe IaC, paas, saas, iaas
 Absätze setzen
