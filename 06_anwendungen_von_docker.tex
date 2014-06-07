@@ -1,5 +1,16 @@
 \chapter{Anwendungen von Docker}
 \label{cha:anwendungen_von_docker}
+Das Hauptanwendungsgebiet von Docker befindet sich im Bereich des Cloud Computing. Hier kann Docker vor allem in den Architekturvarianten Platform as a Service und Software as a Service punkten. Darüber hinaus kann Docker noch in zahlreichen weiteren Bereichen sinnvoll zum einsatz gebracht werden. Ein besonders wichtigen Bereich bildet hier die Automatisierung von Tests in der Softwareentwicklung (siehe Abb \ref{fig:anwendungsfaelle}).
+Im Folgenden wird die Software Docker kurz beleuchtet um die wichtigsten Eigenschaften noch einmal hervorzuheben. Es wird allerdings davon ausgegangen, dass Docker dem Leser bereits ein Begriff ist. Docker wird daher nicht mehr im Detail beschrieben. Im weiteren wird dann auf die genannten Anwendungsfälle eingegangen.
+\begin{figure}[htbp]
+  \centering  
+  \includegraphics[scale=0.7]{img/anwaendungsfaelle.jpg}\\
+  \caption{Die behandelten Anwendungsfälle im Überblick}
+  \label{fig:anwendungsfaelle}
+\end{figure}
+
+\section{Docker}
+\label{sec:docker}
 Docker ist eine Software die es ermöglicht Anwendungen zusammen mit ihren Abhängigkeiten in einen isolierten Container zu verpacken. Docker bedient sich dabei der Linux eigenen LXC-Conntainer Technologie und erweitert diese um eine simple Benutzer API (Application Pro-
 gramming Interface) zum erzeugen, verwalten und für die Interaktion mit diesen Containern.
 Die Eigenschaften von Docker können dabei wie folgt zusammengefasst werden \cite{abel_docker:_2013}:
@@ -184,6 +195,9 @@ Docker benutzt intern LXC und ist daher als vertreter der Linux Containers zu se
   \label{fig:performance_container_hyper}
 \end{figure}
 In allen gemessenen Feldern bewegte sich die Performance von Containen immer im Bereich der nativen Ausführung und zeigte einen deutlichen Performancevorteil gegenüber der hypervisorbasierten Virtualisierung. 
+Ein weiterer Vorteil von Docker gegenüber den klassischen virtuellen Machienenist die Zeit die benötigt wird um den geforderten Service bereitzustellen. Das Starten einer virtuellen Maschine erfordert auch immer den Start eines Gastbetriebssystems bzw. das Laden eines virtuellen Speicherabbilds. Das starten von Containern hingegen ist nahezu ohne Zeitverlust möglich, da die Anwendung nicht auf deinem Gastbetriebssystem angewiesen ist.
+Das Ausführen von Testfällen wird dadurch extrem beschleunigt.
+
 
 Den Nachteil den Docker allerdings gegenüber echten virtuellen Maschinen hat ist, dass eine Verwendung nur dann Sinn macht, wenn man seine einzelnen Infrastrukturkomponenten auf Linux aufsetzen kann. Da Docker auf den Linux eigenen LXC-Containern aufsetzt können damit auch nur Linux Infrastrukturen emuliert werden.
 
