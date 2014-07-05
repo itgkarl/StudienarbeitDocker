@@ -130,7 +130,7 @@ Mit Hilfe von Docker ist es möglich diese Lücke zu schließen. Durch eine dün
 \begin{figure}[htbp]
   \centering  
   \includegraphics[scale=0.5]{img/abstractionContainerHyper.JPG}\\
-  \footnotesize\sffamily\textbf{Quelle:} \cite{miguel_g._xavier_performance_????}
+  \footnotesize\sffamily\textbf{Quelle:} \cite{miguel_g._xavier_performance_2014}
   \caption{Vergleich von Container- und Hypervisorbasierter Virtualisierung }
   \label{fig:abstraction_container_hyper}
 \end{figure}
@@ -154,7 +154,7 @@ Ein mögliches Anwendungsgebiet wäre dann zum Beispiel, Nutzern auf einfache un
 Juien Barbier hat eine Beispielanwendung erstellt die zeigen soll, dass dieses Konzept auch in der Praxis umgesetzt werden kann.
 In seinem Projekt \glqq Build Your Own SaaS with Docker\grqq \cite{barbier_build_2013} hat er eine einfache Webanwendung erstellt mit deren Hilfe Docker Container erzeugt und bereitgestellt werden können. Mit seiner Anwendung ist es möglich den Cache-Server \grq Memcached\grq\ als Software as a Service über das Internet anzubieten. Mit wenigen Maus-klicken können sich Benutzer eine eigene Memcached Instanz erzeugen und diesen über das Internet ansprechen.
 Im Hintergrund wird dafür aus einem vordefinierten Image ein neuer Docker Container mit einer laufenden Memcached-Instanz erzeugt.
-Paul Czarkowski hat in einer ähnlichen Anwendung mit dem selben Vorgehen einen  IRC Bouncer als Software as a Service erstellt. Dabei hat er gezeigt, dass selbst mit einem Server mit nur 512 mb Hauptspeicher das betreiben von einhundert gleichzeitigen Instanzen problemlos möglich ist. \cite{czarkowski_i_????}
+Paul Czarkowski hat in einer ähnlichen Anwendung mit dem selben Vorgehen einen  IRC Bouncer als Software as a Service erstellt. Dabei hat er gezeigt, dass selbst mit einem Server mit nur 512 mb Hauptspeicher das betreiben von einhundert gleichzeitigen Instanzen problemlos möglich ist. \cite{czarkowski_i_2014}
 Mit Hilfe von Docker kann man also auf recht simple Art und Weise eine Vielzahl von unterschiedlichen Anwendungen als Software as a Service zu betreiben.
 
 \section{Automatisierung von Tests mit Docker}
@@ -164,7 +164,7 @@ Die bisher beschriebenen Anwendungsgebiete befinden sich alle im Bereichen die i
 Einer davon ist die Verwendung von Docker für die Automatisierung von Tests in der Softwareentwicklung.
 
 Ein heute weitverbreitetes vorgehen zur Optimierung der Softwareentwicklung ist \grq Continuous Integration\grq . Unter \grq Continuous Integration\grq\ versteht man ein vorgehen in der Softwareentwicklung bei dem alle Mitglieder eines Teams ihre Änderungen am Code besonders häufig integrieren, also zusammenführen. Üblich sind hier durchaus mehrere Integrationen pro Tag. 
-\glqq Im Team entwickelte Softwareprojekte sind mit wachsender Größe und Komplexität zunehmend schwieriger zu verwalten und zu bauen. Durch das ständige Zusammenspiel vieler Entwickler schleichen sich früher oder später zwangsläufig sogenannte Integrationsfehler ein, die sich, je nachdem wann sie bemerkt werden, nur schwer oder gar nicht mehr beseitigen lassen.\grqq \cite{feustel_continuous_????}
+\glqq Im Team entwickelte Softwareprojekte sind mit wachsender Größe und Komplexität zunehmend schwieriger zu verwalten und zu bauen. Durch das ständige Zusammenspiel vieler Entwickler schleichen sich früher oder später zwangsläufig sogenannte Integrationsfehler ein, die sich, je nachdem wann sie bemerkt werden, nur schwer oder gar nicht mehr beseitigen lassen.\grqq \cite{feustel_continuous_2014}
 Dieser Entwicklung soll das Vorgehen von \grq Continuous Integration\grq\ entgegenwirken.
 Jede Integration wird von einem automatisiertem \grq build\grq\ der Anwendung begleitet. Bei jedem \grq build\grq\ werden eine Reihe von automatisierten Tests durchgeführt. So können Integrationsfehler frühzeitig erkannt und behoben werden.
 
@@ -186,13 +186,13 @@ Wenn die Infrastruktur \glqq ausreichend produktionsähnlich, also komplex wird,
 
 Hier kann Docker eine ernstzunehmende Alternative für die bisherigen Tools darstellen. Ersetzt man die \grq schweren\grq\ virtuellen Maschinen durch leichtgewichtige Container ist es möglich, sehr viel komplexere Infrastrukturen auch mit minimalen Systemressourcen zu betreiben.
 Aufgrund einer geringeren Abstraktionsschicht (siehe Abb \ref{fig:abstraction_container_hyper}) bieten die leichtgewichtigen Container einen signifikanten Performancegewinn gegenüber der klassischen Virtualisierung welcher es zusammen mit einem geringeren Arbeitsspeicherauslastung ermöglicht zahlreiche Container auch auf schwächeren Entwicklungsrechnern zu betreiben.
-Xavier et al. \cite{miguel_g._xavier_performance_????} haben dazu einen Performancevergleich zwischen klassischer hypervisorbasierter Virtualisierung und Containerbasierter Virtualisierung angestellt.
+Xavier et al. \cite{miguel_g._xavier_performance_2014} haben dazu einen Performancevergleich zwischen klassischer hypervisorbasierter Virtualisierung und Containerbasierter Virtualisierung angestellt.
 In diesem Vergleich wurden gängige Container  wie Linux VServer, OpenVZ and Linux Containers (LXC) einem Vertreter der hypervisorbasierten Virtualisierung: Xen gegenübergestellt.
 Docker benutzt intern LXC und ist daher als vertreter der Linux Containers zu sehen.
 \begin{figure}[htbp]
   \centering  
   \includegraphics[scale=0.5]{img/performanceBenchmarks.JPG}\\
-  \footnotesize\sffamily\textbf{Quelle:} \cite{miguel_g._xavier_performance_????}
+  \footnotesize\sffamily\textbf{Quelle:} \cite{miguel_g._xavier_performance_2014}
   \caption{Performancevergleich von Container- und Hypervisorbasierter Virtualisierung}
   \label{fig:performance_container_hyper}
 \end{figure}
