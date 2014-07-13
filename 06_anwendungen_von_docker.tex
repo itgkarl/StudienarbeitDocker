@@ -1,6 +1,6 @@
 \chapter{Anwendungen von Docker}
 \label{cha:anwendungen_von_docker}
-Das Hauptanwendungsgebiet von Docker befindet sich im Bereich des Cloud Computing. Hier kann Docker vor allem in den Architekturvarianten Platform as a Service und Software as a Service punkten. Darüber hinaus kann Docker noch in zahlreichen weiteren Bereichen sinnvoll zum einsatz gebracht werden. Einen besonders wichtigen Bereich bildet hier die Automatisierung von Tests in der Softwareentwicklung (siehe Abb \ref{fig:anwendungsfaelle}).
+Das Hauptanwendungsgebiet von Docker befindet sich im Bereich des Cloud Computing. Hier kann Docker vor allem in den Service-Modellen Platform as a Service und Software as a Service punkten. Darüber hinaus kann Docker noch in zahlreichen weiteren Bereichen sinnvoll zum einsatz gebracht werden. Einen besonders wichtigen Bereich bildet hier die Automatisierung von Tests in der Softwareentwicklung (siehe Abb \ref{fig:anwendungsfaelle}).
 Im Folgenden wird die Software Docker kurz beleuchtet um die wichtigsten Eigenschaften noch einmal hervorzuheben. Es wird allerdings davon ausgegangen, dass Docker dem Leser bereits ein Begriff ist. Docker wird daher nicht mehr im Detail beschrieben. Im weiteren wird dann auf die genannten Anwendungsfälle näher eingegangen.
 \begin{figure}[htbp]
   \centering  
@@ -160,10 +160,20 @@ Mit Hilfe von Docker kann man also auf recht simple Art und Weise eine Vielzahl 
 \section{Automatisierung von Tests mit Docker}
 \label{sec:automatisierung_von_tests_mit_docker}
 
-Die bisher beschriebenen Anwendungsgebiete befinden sich alle im Bereichen die in Architekturvarianten der Cloud angesiedelt sind. Also einem Gebiet, für das Docker gedacht ist und entwickelt wurde. Neben diesen Anwendungsgebieten bieten sich aber noch zahlreiche weitere Bereiche in denen Docker sinnvoll eingesetzt werden kann.
+Die bisher beschriebenen Anwendungsgebiete befinden sich alle im Bereichen die in Service-Modellen der Cloud angesiedelt sind. Also einem Gebiet, für das Docker gedacht ist und entwickelt wurde. Neben diesen Anwendungsgebieten bieten sich aber noch zahlreiche weitere Bereiche in denen Docker sinnvoll eingesetzt werden kann.
 Einer davon ist die Verwendung von Docker für die Automatisierung von Tests in der Softwareentwicklung.
 
-Ein heute weitverbreitetes vorgehen zur Optimierung der Softwareentwicklung ist \grq Continuous Integration\grq . Unter \grq Continuous Integration\grq\ versteht man ein vorgehen in der Softwareentwicklung bei dem alle Mitglieder eines Teams ihre Änderungen am Code besonders häufig integrieren, also zusammenführen. Üblich sind hier durchaus mehrere Integrationen pro Tag. 
+Ein heute weitverbreitetes vorgehen zur Optimierung der Softwareentwicklung ist \grq Continuous Integration\grq . 
+
+(siehe Abb \ref{fig:ci})
+\begin{figure}[htbp]
+  \centering  
+  \includegraphics[scale=0.5]{img/ci.jpg}\\
+  \caption{Continuous Integration}
+  \label{fig:ci}
+\end{figure}
+
+Unter \grq Continuous Integration\grq\ versteht man ein vorgehen in der Softwareentwicklung bei dem alle Mitglieder eines Teams ihre Änderungen am Code besonders häufig integrieren, also zusammenführen. Üblich sind hier durchaus mehrere Integrationen pro Tag. 
 \glqq Im Team entwickelte Softwareprojekte sind mit wachsender Größe und Komplexität zunehmend schwieriger zu verwalten und zu bauen. Durch das ständige Zusammenspiel vieler Entwickler schleichen sich früher oder später zwangsläufig sogenannte Integrationsfehler ein, die sich, je nachdem wann sie bemerkt werden, nur schwer oder gar nicht mehr beseitigen lassen.\grqq \cite{feustel_continuous_2014}
 Dieser Entwicklung soll das Vorgehen von \grq Continuous Integration\grq\ entgegenwirken.
 Jede Integration wird von einem automatisiertem \grq build\grq\ der Anwendung begleitet. Bei jedem \grq build\grq\ werden eine Reihe von automatisierten Tests durchgeführt. So können Integrationsfehler frühzeitig erkannt und behoben werden.
